@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Surpresa da Gravidez!</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: linear-gradient(to bottom, #4fc3f7, #ec407a);
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            font-size: 1.1em;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 3em;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease, pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: #000;
+            font-weight: 600;
+        }
+
+        #mensagemInicial {
+            background-image: linear-gradient(to bottom, #90caf9, #f48fb1);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: all 1s ease;
+            animation: fadeIn 1s ease;
+        }
+
+        #mensagemInicial:hover {
+            transform: scale(1.04);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+        .btn-custom {
+            padding: 15px 30px;
+            font-size: 1.3em;
+            margin: 15px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            border-radius: 12px;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-image: linear-gradient(to right, #ff9800, #90caf9);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-custom:hover {
+            background-image: linear-gradient(to right, #f57c00, #64b5f6);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+
+
+        #resultado {
+            display: none;
+            background-color: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 16px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 1s ease, pulse 1.5s infinite;
+             flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        #parabens {
+            font-size: 4em;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-image: linear-gradient(to right, #ff6b81, #4fc3f7);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: pulse 3s infinite;
+             transition: font-size 0.5s ease;
+        }
+
+        #parabens:hover{
+           font-size: 4.5em;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .emoji {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: bounce 1s infinite;
+             transition: transform 0.5s ease;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Nova classe para transições de página */
+        .page-transition {
+            animation: zoomOutFadeIn 1s ease-in-out forwards; /* Mudando a animação */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex; /* Para garantir que o conteúdo ocupe a tela toda */
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        @keyframes zoomOutFadeIn {
+            from { transform: scale(1.1); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .slideOutLeft {
+            animation: slideOutLeft 0.5s ease-in-out forwards;
+        }
+         @keyframes slideOutLeft {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-100%); opacity: 0; }
+        }
+
+        .fadeInLeft {
+            animation: fadeInLeft 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInLeft {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .slideOutUp {
+            animation: slideOutUp 0.5s ease-in-out forwards;
+        }
+
+        @keyframes slideOutUp {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-100%); opacity: 0; }
+        }
+
+        .fadeInDown {
+            animation: fadeInDown 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeInDown {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hidden{
+          display:none;
+        }
+
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container">
+        <h1>Uma Surpresa Especial!</h1>
+        <div id="mensagemInicial" class="page-transition">
+            <p style="color:white; font-size: 1.7em; font-weight: bold;">Olá amigos, temos uma novidade emocionante para compartilhar com vocês. Preparem-se para uma pequena jornada!</p>
+            <button class="btn btn-primary btn-custom" id="btnProximo1">
+                <i class="fas fa-gift"></i> Clique aqui para o primeiro passo!
+            </button>
+        </div>
+
+        <div id="resultado1" class="page-transition hidden">
+            <p style="color:white; font-weight: 600;"> Vocês são muito importantes para nós e queremos que façam parte deste momento.</p>
+            <button class="btn btn-primary btn-custom" id="btnProximo2">
+                <i class="fas fa-heart"></i> Próximo
+            </button>
+             <button class="btn btn-secondary btn-custom" id="btnVoltar1">Voltar</button>
+        </div>
+
+        <div id="resultado2" class="page-transition hidden">
+             <p style="color:white; font-weight: 600;"> Algo incrível está para acontecer em nossas vidas, algo que mudará tudo.</p>
+            <button class="btn btn-primary btn-custom" id="btnProximo3">
+                <i class="fas fa-baby"></i> Próximo
+            </button>
+            <button class="btn btn-secondary btn-custom" id="btnVoltar2">Voltar</button>
+        </div>
+
+        <div id="resultado3" class="page-transition hidden">
+            <p style="color:white; font-size: 1.4em; font-weight: bold;"> Preparem seus corações para a grande revelação!</p>
+           <button class="btn btn-primary btn-custom" id="btnProximo4">
+                <i class="fas fa-drum"></i> Estão preparados?
+            </button>
+            <button class="btn btn-secondary btn-custom" id="btnVoltar3">Voltar</button>
+        </div>
+
+        <div id="resultado4" class="page-transition hidden">
+            <p style="color: white; font-size: 1.4em; font-weight: bold;">Chegou a hora...</p>
+            <button class="btn btn-primary btn-custom" id="btnProximo5">
+                <i class="fas fa-key"></i> Preparem-se
+            </button>
+            <button class="btn btn-secondary btn-custom" id="btnVoltar4">Voltar</button>
+        </div>
+
+        <div id="resultado" class="page-transition hidden">
+            <h2 id="parabens" style="font-size: 5em;">Uhuuul!</h2>
+            <p class="emoji">🎉 <i class="fas fa-baby"></i> 🍼👶</p>
+            <p style="font-size: 1.2em; font-weight: bold;">
+                Nós vamos ter um bebê! Estamos muito felizes em compartilhar essa alegria com vocês.
+            </p>
+            <div style="display:flex; gap:10px; justify-content:center;">
+              <button class="btn btn-success btn-custom" id="btnIniciarNovamente"> Iniciar Novamente </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const mensagemInicial = document.getElementById('mensagemInicial');
+        const resultado1 = document.getElementById('resultado1');
+        const resultado2 = document.getElementById('resultado2');
+        const resultado3 = document.getElementById('resultado3');
+        const resultado4 = document.getElementById('resultado4');
+        const resultadoFinal = document.getElementById('resultado');
+        const btnProximo1 = document.getElementById('btnProximo1');
+        const btnProximo2 = document.getElementById('btnProximo2');
+        const btnProximo3 = document.getElementById('btnProximo3');
+        const btnProximo4 = document.getElementById('btnProximo4');
+        const btnProximo5 = document.getElementById('btnProximo5');
+        const btnVoltar1 = document.getElementById('btnVoltar1');
+        const btnVoltar2 = document.getElementById('btnVoltar2');
+        const btnVoltar3 = document.getElementById('btnVoltar3');
+        const btnVoltar4 = document.getElementById('btnVoltar4');
+        const btnIniciarNovamente = document.getElementById('btnIniciarNovamente');
+
+
+        let animationIndex = 0;
+        const animations = ['zoomOutFadeIn', 'slideOutLeft', 'slideOutUp', 'fadeInDown'];
+
+        function getNextAnimation() {
+            const animation = animations[animationIndex];
+            animationIndex = (animationIndex + 1) % animations.length;
+            return animation;
+        }
+
+        function changePage(fromPage, toPage) {
+            const outAnimation = getNextAnimation();
+            const inAnimation = getNextAnimation();
+            fromPage.classList.remove('fadeIn');
+            fromPage.classList.add(outAnimation);
+
+            setTimeout(() => {
+                fromPage.style.display = 'none';
+                toPage.style.display = 'flex';
+                toPage.classList.remove('hidden');
+                toPage.classList.add('fadeIn');
+            }, 500);
+        }
+
+
+        btnProximo1.addEventListener('click', () => {
+            changePage(mensagemInicial, resultado1);
+        });
+
+        btnProximo2.addEventListener('click', () => {
+            changePage(resultado1, resultado2);
+        });
+
+         btnProximo3.addEventListener('click', () => {
+            changePage(resultado2, resultado3);
+        });
+
+        btnProximo4.addEventListener('click', () => {
+            changePage(resultado3, resultado4);
+        });
+
+        btnProximo5.addEventListener('click', () => {
+            changePage(resultado4, resultadoFinal);
+        });
+
+        btnVoltar1.addEventListener('click', () => {
+            resultado1.classList.remove('fadeIn');
+            resultado1.classList.add('slideOut');
+            setTimeout(() => {
+                resultado1.style.display = 'none';
+                mensagemInicial.style.display = 'flex';
+                mensagemInicial.classList.remove('hidden');
+                mensagemInicial.classList.add('fadeIn');
+            }, 500);
+        });
+
+        btnVoltar2.addEventListener('click', () => {
+            resultado2.classList.remove('fadeIn');
+            resultado2.classList.add('slideOut');
+             setTimeout(() => {
+                resultado2.style.display = 'none';
+                resultado1.style.display = 'flex';
+                resultado1.classList.remove('hidden');
+                resultado1.classList.add('fadeIn');
+            }, 500);
+        });
+
+        btnVoltar3.addEventListener('click', () => {
+            resultado3.classList.remove('fadeIn');
+            resultado3.classList.add('slideOut');
+             setTimeout(() => {
+                resultado3.style.display = 'none';
+                resultado2.style.display = 'flex';
+                resultado2.classList.remove('hidden');
+                resultado2.classList.add('fadeIn');
+            }, 500);
+        });
+
+        btnVoltar4.addEventListener('click', () => {
+            resultadoFinal.classList.remove('fadeIn');
+            resultadoFinal.classList.add('slideOut');
+             setTimeout(() => {
+                 resultadoFinal.style.display = 'none';
+                  resultado3.style.display = 'flex';
+                resultado3.classList.remove('hidden');
+                resultado3.classList.add('fadeIn');
+            }, 500);
+        });
+
+        btnIniciarNovamente.addEventListener('click', () => {
+            resultadoFinal.classList.remove('fadeIn');
+            resultadoFinal.classList.add('slideOut');
+            setTimeout(() => {
+                resultadoFinal.style.display = 'none';
+                mensagemInicial.style.display = 'flex';
+                mensagemInicial.classList.remove('hidden');
+                mensagemInicial.classList.add('fadeIn');
+                 animationIndex = 0;
+            }, 500);
+        });
+    </script>
+</body>
+</html>
